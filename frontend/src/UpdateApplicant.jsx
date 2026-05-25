@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 export default function UpdateApplicant(){
@@ -10,9 +10,10 @@ export default function UpdateApplicant(){
     const [email, setEmail] = useState()
     const [contact, setContact] = useState()
     const [applying, setApplying] = useState()
+    const nav = useNavigate()
 
     useEffect(() => {
-        axios.post('http://localhost:3002/getApplicant/'+id)
+        axios.get('http://localhost:3002/getApplicant/'+id)
         .then(result => {
             console.log(result)
             setName(result.data.name)
@@ -24,10 +25,22 @@ export default function UpdateApplicant(){
         .catch(err => console.log(err))
     }, [])
 
+    const handleUpdate = (e) => {
+        e.preventDefault();
+        axios.put('http://localhost:3002/updateApplicant/'+id,
+            {name, age, email, contact, applying}
+        )
+        .then(result => {
+            console.log(result)
+            nav('/')
+        })
+        .catch(err => console.log(err))
+    }
+
     return(
         <div className="d-flex vh-100 bg-primary justify-content-center align-items-center">
             <div className="w-50 bg-white rounded p-3">
-                <form>
+                <form onSubmit={handleUpdate}>
                     <h2>Update applicant</h2>
                     <div className="mb-2">
                         <label htmlFor="">Name</label>

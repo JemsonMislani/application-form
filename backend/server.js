@@ -24,9 +24,25 @@ app.post('/createApplicant', (req, res) => {
 })
 
 // get applicant id
-app.post('/getApplicant/:id', (req, res) => {
+app.get('/getApplicant/:id', (req, res) => {
     const id = req.params.id;
     ApplicantModel.findById({_id:id})
+    .then(applicants => res.json(applicants))
+    .catch(err => res.json(err))
+})
+
+// update applicant data
+app.put('/updateApplicant/:id', (req, res) => {
+    const id = req.params.id;
+    ApplicantModel.findByIdAndUpdate(
+        {_id:id},
+        {
+            name: req.body.name,
+            age: req.body.age,
+            email: req.body.email,
+            contact: req.body.contact,
+            applying: req.body.applying
+        })
     .then(applicants => res.json(applicants))
     .catch(err => res.json(err))
 })
