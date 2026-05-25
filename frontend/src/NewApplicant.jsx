@@ -13,6 +13,13 @@ export default function NewApplicant(){
                             className="form-control"/>
                     </div>
                     <div className="mb-2">
+                        <label htmlFor="">Age</label>
+                        <input 
+                            type="number" 
+                            placeholder="Enter Age" 
+                            className="form-control"/>
+                    </div>
+                    <div className="mb-2">
                         <label htmlFor="">Email</label>
                         <input 
                             type="email" 

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 export default function Applicant(){
     const [applicant, setApplicant] = useState([{
         name: 'Jemson Mislani',
+        age: 27,
         email: 'jem@gmail.com',
         contact: '09213456789',
         applying: 'Software Developer'
@@ -17,6 +18,7 @@ export default function Applicant(){
                     <thead>
                         <tr>
                             <th>Name</th>
+                            <th>Age</th>
                             <th>Email</th>
                             <th>Contact Number</th>
                             <th>Applying for</th>
@@ -28,6 +30,7 @@ export default function Applicant(){
                             applicant.map((app) => {
                         return <tr>
                             <td>{app.name}</td>
+                            <td>{app.age}</td>
                             <td>{app.email}</td>
                             <td>{app.contact}</td>
                             <td>{app.applying}</td>
