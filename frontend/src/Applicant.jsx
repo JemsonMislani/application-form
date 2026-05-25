@@ -39,7 +39,7 @@ export default function Applicant(){
                             <td>{app.applying}</td>
                             <td>
                                 <Link 
-                                    to='/update-applicant'
+                                    to={`/update-applicant/${app._id}`}
                                     className='btn btn-success'>Edit</Link>
                                 <button
                                     className='btn btn-danger'>Delete</button>

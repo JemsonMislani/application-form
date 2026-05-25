@@ -10,7 +10,7 @@ export default function App() {
   <Routes>
     <Route path='/' element={<Applicant/>} />
     <Route path='create-applicant' element={<NewApplicant/>}/>
-    <Route path='update-applicant' element={<UpdateApplicant/>}/>
+    <Route path='update-applicant/:id' element={<UpdateApplicant/>}/>
   </Routes>
 </BrowserRouter>
 </>
