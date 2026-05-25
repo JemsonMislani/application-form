@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Applicant(){
     const [applicant, setApplicant] = useState([{
@@ -11,7 +12,7 @@ export default function Applicant(){
     return(
 <div className="d-flex vh-100 bg-primary justify-content-center align-items-center">
             <div className="w-50 bg-white rounded p-3">
-                <button className="btn btn-success">Add +</button>
+                <Link to='/create-applicant' className="btn btn-success">Add +</Link>
                 <table className="table">
                     <thead>
                         <tr>
@@ -31,8 +32,9 @@ export default function Applicant(){
                             <td>{app.contact}</td>
                             <td>{app.applying}</td>
                             <td>
-                                <button 
-                                    className='btn btn-success'>Edit</button>
+                                <Link 
+                                    to='/update-applicant'
+                                    className='btn btn-success'>Edit</Link>
                                 <button
                                     className='btn btn-danger'>Delete</button>
                             </td>
