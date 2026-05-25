@@ -47,6 +47,14 @@ app.put('/updateApplicant/:id', (req, res) => {
     .catch(err => res.json(err))
 })
 
+// delete applicant data
+app.delete('/deleteApplicant/:id', (req, res) => {
+    const id = req.params.id;
+    ApplicantModel.findByIdAndDelete({_id:id})
+    .then(applicants => res.json(applicants))
+    .catch(err => res.json(err))
+})
+
 PORT = 3002;
 app.listen(PORT, () => {
     console.log('Jem, your applicant server is running!')

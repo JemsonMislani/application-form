@@ -12,6 +12,15 @@ export default function Applicant(){
         .then(result => setApplicant(result.data))
         .catch(err => console.log(err))
     }, [])
+
+    const handleDelete = (id) => {
+        axios.delete('http://localhost:3002/deleteApplicant/'+id)
+        .then(result => {
+            console.log(result)
+            window.location.reload()
+        })
+        .catch(err => console.log(err))
+    }
     
     return(
 <div className="d-flex vh-100 bg-primary justify-content-center align-items-center">
@@ -42,6 +51,7 @@ export default function Applicant(){
                                     to={`/update-applicant/${app._id}`}
                                     className='btn btn-success'>Edit</Link>
                                 <button
+                                    onClick={(e) => handleDelete(app._id)}
                                     className='btn btn-danger'>Delete</button>
                             </td>
                         </tr>
