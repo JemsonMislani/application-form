@@ -1,15 +1,18 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 export default function Applicant(){
-    const [applicant, setApplicant] = useState([{
-        name: 'Jemson Mislani',
-        age: 27,
-        email: 'jem@gmail.com',
-        contact: '09213456789',
-        applying: 'Software Developer'
-    }])
+    const [applicant, setApplicant] = useState([])
+
+    useEffect(() => {
+        axios.get('http://localhost:3002/')
+        .then(result => setApplicant(result.data))
+        .catch(err => console.log(err))
+    }, [])
+    
     return(
 <div className="d-flex vh-100 bg-primary justify-content-center align-items-center">
             <div className="w-50 bg-white rounded p-3">
@@ -28,7 +31,7 @@ export default function Applicant(){
                     <tbody>
                         {
                             applicant.map((app) => {
-                        return <tr>
+                            return <tr>
                             <td>{app.name}</td>
                             <td>{app.age}</td>
                             <td>{app.email}</td>

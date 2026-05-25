@@ -1,12 +1,27 @@
 const mongoose = require('mongoose')
 const express = require('express')
 const cors = require('cors')
+const ApplicantModel = require('./models/Applicant')
 
 const app = express();
 app.use(cors())
 app.use(express.json())
 
-mongoose.connect('mongodb://127.0.0.1/27017/user_applicant')
+mongoose.connect('mongodb://127.0.0.1:27017/user_applicant')
+
+// get applicant data from schema
+app.get('/', (req, res) => {
+    ApplicantModel.find({})
+    .then(applicants => res.json(applicants))
+    .catch(err => res.json(err))
+})
+
+// create applicant
+app.post('/createApplicant', (req, res) => {
+    ApplicantModel.create(req.body)
+    .then(applicants => res.json(applicants))
+    .catch(err => res.json(err))
+})
 
 PORT = 3002;
 app.listen(PORT, () => {
